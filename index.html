@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт с тремя вкладками</title>
+    <style>
+        /* Базовые настройки страницы */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        /* Контейнер для кнопок вкладок */
+        .tabs-nav {
+            display: flex;
+            background-color: #f0f2f5;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        /* Кнопка вкладки */
+        .tab-button {
+            flex: 1;
+            padding: 16px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            color: #555;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .tab-button:focus {
+            outline: 2px solid #0066cc;
+            outline-offset: -2px;
+        }
+
+        /* Активная вкладка */
+        .tab-button.active {
+            color: #0066cc;
+            background-color: #fff;
+            border-bottom: 3px solid #0066cc;
+        }
+
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: #0066cc;
+            border-radius: 50%;
+        }
+
+        /* Контент вкладок */
+        .tabs-content {
+            padding: 30px;
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Стили для списка услуг */
+        .services-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .services-list li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .services-list li:last-child {
+            border-bottom: none;
+        }
+
+        .services-list strong {
+            color: #0066cc;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .tabs-nav {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+            .tab-button {
+                flex-shrink: 0;
+                white-space: nowrap;
+                padding: 14px 16px;
+                font-size: 15px;
+            }
+            .container {
+                padding: 15px;
+            }
+            .tabs-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Навигация по вкладкам -->
+    <div class="tabs-nav" role="tablist">
+        <button class="tab-button active" data-tab="tab-1" role="tab" aria-selected="true" aria-controls="panel-1">О чём</button>
+        <button class="tab-button" data-tab="tab-2" role="tab" aria-selected="false" aria-controls="panel-2">cybersecurity</button>
+        <button class="tab-button" data-tab="tab-3" role="tab" aria-selected="false" aria-controls="panel-3">Защита</button>
+    </div>
+
+    <!-- Контент вкладок -->
+    <div class="tabs-content">
+        <!-- Вкладка 1:ГЛАВНАЯ ЧАСТЬ  -->
+        <div id="panel-1" class="tab-panel active" role="tabpanel" aria-labelledby="tab-1">
+            <h2>ВАЖНО</h2>
+            <p>Здесь располагается информация о том как группы людей защищяют организации, обычных пользователей от кибератак утечек данных вредоносных ПО и внутрение угрозы.</p>
+            <p>А защищяют организации, група людей с название кибербезопасность именно про это пойдет речь.</p>
+        </div>
+
+        <!-- Вкладка 2: Кибербезопасность (измененный блок) -->
+        <div id="panel-2" class="tab-panel" role="tabpanel" aria-labelledby="tab-2">
+            <h2>&#128275; Кибербезопасность</h2>
+            <p>начнем с того, что такое кибер безопасность.</p>
+            <p>Кибербезопасность — это защита компьютерных систем, сетей, программ и данных от цифровых угроз: хакерских атак, вредоносного ПО, утечек информации и других рисков в киберпространстве.</p>
+            <h3>В этой сфере атак очень много, но вот парочку самы популярных: 
+            <ul class="services-list">
+                <p>DDoS-атака.-Суть в том, чтобы сделать ресурс (сайт, сервер, онлайн-сервис) недоступным для реальных пользователей. Злоумышленники заваливают цель огромным количеством запросов с множества устройств, которые объединены в ботнет — сеть заражённых устройств (компьютеры, смартфоны, IoT-гаджеты: IP-камеры, роутеры, умные телевизоры). В результате сервер перегружается, замедляется или полностью перестаёт отвечать. </p>
+                <p>Фишинг. Метод социальной инженерии: злоумышленник маскируется под доверенный источник (банк, коллега, известная компания), чтобы обманом заставить жертву раскрыть логин, пароль или другие конфиденциальные данные.</p>
+                <p>SQL-инъекции. Атака, при которой внедряют вредоносный SQL-код в запросы к базе данных, чтобы получить к ним доступ, изменить или украсть информацию.</p>
+                <p>Брутфорс (Brute Force)-Это автоматизированный перебор паролей или ключей шифрования. Злоумышленник использует программы, которые быстро перебирают комбинации, пока не найдут верную. Часто применяется для взлома учётных записей.</p>
+            </ul>
+        </div>
+
+        <!-- Вкладка 3: Контакты -->
+        <div id="panel-3" class="tab-panel" role="tabpanel" aria-labelledby="tab-3">
+            <h2>Как защитится сомому от кибератак?</h2>
+            <p>Дам пару советов.</p>
+            <p>1.Придумывайте сложные и уникальные пароли.</p>
+            <p>2.Установите антивирус и настройте брандмауэр.</p>
+            <p>3.Регулярно обновляйте ПО.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    function switchTab(e) {
+        const clickedButton = e.currentTarget;
+        const targetTab = clickedButton.dataset.tab;
+
+        tabButtons.forEach(button => {
+            button.classList.remove('active');
+            button.setAttribute('aria-selected', 'false');
+        });
+        tabPanels.forEach(panel => panel.classList.remove('active'));
+
+        clickedButton.classList.add('active');
+        clickedButton.setAttribute('aria-selected', 'true');
+        document.getElementById(targetTab.replace('tab-', 'panel-')).classList.add('active');
+    }
+
+    tabButtons.forEach(button => button.addEventListener('click', switchTab));
+</script>
+
+</body>
+</html>
